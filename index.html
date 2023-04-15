@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .user-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .user {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        border-bottom: 1px solid #ddd;
+        width: 25%;
+      }
+
+      .user .data {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .user img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        margin-right: 0.7rem;
+      }
+
+      .user .name {
+        font-weight: bold;
+      }
+
+      .user .email {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="user-grid">
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
+        <div class="data">
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/33.jpg" />
+        <div class="data">
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
+        <div class="data">
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/33.jpg" />
+        <div class="data">
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
+        <div class="data">
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/33.jpg" />
+        <div class="data">
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
