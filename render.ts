@@ -1,4 +1,4 @@
-import { User } from "./users.js";
+import { User } from "./user.js";
 
 const head = (title: string) => `
 <head>
