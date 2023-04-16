@@ -9,8 +9,8 @@ export class UserServicesImp implements UserServices {
     const response = await fetch(`${USER_API_URL}${n}`);
     const { results } = (await response.json()) as { results: any[] };
     const users: Array<User> = [];
-    for (const { gender, name, location, login, email, picture } of results) {
-      users.push(new User(gender, name, location, login, email, picture));
+    for (const { gender, name, location, login, email, picture,cell } of results) {
+      users.push(new User(gender, name, location, login, email, picture,cell));
     }
     return users;
   };

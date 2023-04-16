@@ -23,6 +23,9 @@ export class User {
       large: string;
       medium: string;
       thumbnail: string;
+    },
+    public cell:{
+      cell:string;
     }
   ) {}
 
