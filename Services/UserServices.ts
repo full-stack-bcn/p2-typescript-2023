@@ -1,4 +1,4 @@
 import { User } from "../user.js";
 export interface UserServices{
-    loadUsers(n: number): Promise<User[]>;
+    getUsers(n: number): Promise<User[]>;
 };

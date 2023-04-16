@@ -19,6 +19,12 @@
         gap: 1rem;
       }
 
+      .user-grid > * {
+        width: 250px;
+        min-width: 210px;
+        max-width: 220px;
+      }
+
       .user {
         font-family: sans-serif;
         display: flex;
@@ -28,11 +34,14 @@
         padding: 0.4rem;
         border-bottom: 1px solid #ddd;
         background-image: linear-gradient(to bottom, #1d9dec, #bfdcec);
+        max-width: 220px;
+        color: white;
       }
 
       .user .data {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
       }
 
       .user img {
@@ -40,14 +49,28 @@
         height: 5rem;
         border-radius: 50%;
         margin-right: 0.7rem;
+        margin-left: 0.7rem;
       }
 
-      .user .name {
+      .user .name, .ver-mas {
         font-weight: bold;
       }
 
       .user .email {
         font-family: monospace;
+      }
+
+      .ver-mas {
+        background-color: #1d9dec;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+      }
+
+      .ver-mas:hover {
+        background-color: navy;
       }
     </style>
   </head>
@@ -60,9 +83,10 @@
         </div>
         <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
         <div class="data">
-          <div class="email">Email:</div>
+          <div class="name">Email:</div>
           <div class="email">milla.maijala@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
       <div class="user">
         <div class="data">
@@ -70,9 +94,10 @@
         </div>
         <img src="https://randomuser.me/api/portraits/med/women/33.jpg" />
         <div class="data">
-          <div class="email">Email:</div>
+          <div class="name">Email:</div>
           <div class="email">josefine.kilian@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
       <div class="user">
         <div class="data">
@@ -80,9 +105,10 @@
         </div>
         <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
         <div class="data">
-          <div class="email">Email:</div>
+          <div class="name">Email:</div>
           <div class="email">milla.maijala@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
       <div class="user">
         <div class="data">
@@ -90,9 +116,10 @@
         </div>
         <img src="https://randomuser.me/api/portraits/med/women/33.jpg" />
         <div class="data">
-          <div class="email">Email:</div>
+          <div class="name">Email:</div>
           <div class="email">josefine.kilian@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
       <div class="user">
         <div class="data">
@@ -100,9 +127,10 @@
         </div>
         <img src="https://randomuser.me/api/portraits/med/women/18.jpg" />
         <div class="data">
-          <div class="email">Email:</div>
+          <div class="name">Email:</div>
           <div class="email">milla.maijala@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
       <div class="user">
         <div class="data">
@@ -113,6 +141,7 @@
           <div class="email">Email</div>
           <div class="email">josefine.kilian@example.com</div>
         </div>
+        <button class="ver-mas">Ver más</button>
       </div>
     </div>
   </body>
