@@ -1,5 +1,6 @@
 import { RenderServices } from "./RenderServices.js";
 import { User } from "../user.js";
+import { USERS_TO_LOAD, USERS_PER_PAGE, MAIN_HTML } from "../Constant/constant.js";
 
 export class RenderServicesImp implements RenderServices {
   constructor() {}
@@ -77,6 +78,33 @@ export class RenderServicesImp implements RenderServices {
       .ver-mas:hover {
         background-color: navy;
       }
+
+      ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      ul.pagination li {
+        display: inline;
+      }
+
+      ul.pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+
+      ul.pagination li a.active {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      ul.pagination li a:hover:not(.active) {
+        background-color: #ddd;
+      }
     </style>
     </head>`;
   }
@@ -101,13 +129,57 @@ export class RenderServicesImp implements RenderServices {
     html += "</div>";
     return html;
   }
-  public renderUsers(users: Array<User>): string {
-    return `
-  <html>
-    ${this.renderHead("User List")}
-    <body>
-      ${this.rendeBody(users)}
-    </body>
-  </html>`;
+
+  private addPagination(pages: number, current: number): string {
+    let hmlt = `<ul class="pagination">`;
+
+    if (current > 0) {
+      hmlt += `<li><a href="index_"${current - 1}>«</a></li>`;
+    }
+
+    for (let i = 0; i <= pages; i++) {
+      if (i == current) {
+        hmlt += `<li><a class="active" href="${MAIN_HTML}${i}.html">${i}</a></li>`;
+      } else {
+        hmlt += `<li><a href="${MAIN_HTML}${i}.html">${i}</a></li>`;
+      }
+    }
+
+    if (current < pages) {
+      hmlt += `<li><a href="${MAIN_HTML}${current + 1}.html>»</a></li>`;
+    }
+
+    hmlt += "</ul>";
+
+    return hmlt;
+  }
+  
+  public renderUsers(users: Array<User>): Array<string> {
+    const pages: number = Math.ceil(USERS_TO_LOAD / USERS_PER_PAGE);
+    const allHtmlPages: Array<string> = [];
+    let htmlPage: string = "";
+    let from: number = 0;
+    let until: number = 50;
+
+    for (let i: number = 0; i < pages; i++) {
+      const sliceOfUsers = users.slice(from, until);
+      htmlPage = `<html>
+        ${this.renderHead(`User List ${i}`)}
+        <body>
+          ${this.rendeBody(sliceOfUsers)}
+          ${this.addPagination(pages, i)}
+        </body>
+      </html>`;
+
+      allHtmlPages.push(htmlPage);
+
+      from = until;
+      until =
+        until + USERS_PER_PAGE <= users.length
+          ? until + USERS_PER_PAGE
+          : users.length - 1;
+    }
+
+    return allHtmlPages;
   }
 }
