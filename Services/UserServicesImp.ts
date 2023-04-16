@@ -1,6 +1,6 @@
 import { UserServices } from "./UserServices.js";
 import { User } from "../user.js";
-import { USER_API_URL} from "../Constant/Api.js"
+import { USER_API_URL} from "../Constant/constant.js"
 
 export class UserServicesImp implements UserServices {
   constructor() {}
