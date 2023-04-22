@@ -186,4 +186,8 @@ export class RenderServicesImp implements RenderServices {
 
     return allHtmlPages;
   }
+
+  public renderUsersDetails(User: Array<User>): Array<string> {
+    return new Array<string>;
+  }
 }
