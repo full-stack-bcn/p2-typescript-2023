@@ -1,4 +1,3 @@
-
 export class User {
   constructor(
     public gender: "male" | "female",
@@ -13,10 +12,10 @@ export class User {
       state: string;
       country: string;
       postcode: number;
-    },
-    public login: {
-      username: string;
-      password: string;
+      coordinates: {
+        latitude: string;
+        longitude: string;
+      };
     },
     public email: string,
     public picture: {
@@ -24,8 +23,8 @@ export class User {
       medium: string;
       thumbnail: string;
     },
-    public cell:{
-      cell:string;
+    public cell: {
+      cell: string;
     }
   ) {}
 

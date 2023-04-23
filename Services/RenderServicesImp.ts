@@ -187,7 +187,203 @@ export class RenderServicesImp implements RenderServices {
     return allHtmlPages;
   }
 
-  public renderUsersDetails(User: Array<User>): Array<string> {
-    return new Array<string>;
+  private renderUserDetailHead(title: string): string {
+    return `<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+      :root {
+        font-family: sans-serif;
+        font-size: large;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        background-image: linear-gradient(to bottom, #1d9dec, #bfdcec);
+        color: white;
+        width: 20%;
+        min-width: 20rem;
+        height: 49rem;
+      }
+
+      .user .titulo_de_seccion {
+        display: flex;
+        flex-wrap: wrap;
+        height: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .user .details {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+      }
+
+      .user .icono {
+        width: 2rem;
+        height: 2rem;
+        margin-top: 0rem;
+        margin-right: 0.7rem;
+        margin-left: 0;
+      }
+
+      .user img {
+        width: 7rem;
+        height: 7rem;
+        margin-top: 4rem;
+        margin-right: 0.7rem;
+        margin-left: 0.7rem;
+      }
+
+      .user .name {
+        font-weight: bold;
+        font-size: xx-large;
+        margin-top: 1rem;
+      }
+
+      .user .title {
+        font-weight: bold;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .user .data {
+        font-family: monospace;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .user .seccion {
+        font-family: monospace;
+        font-size: small;
+        font-style: italic;
+        margin-bottom: 0.5rem;
+      }
+
+      .mapContenedor {
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem;
+      }
+      .mapContenedor #mapid {
+        width: 40rem;
+        height: 48.7rem;
+      }
+
+      .linea {
+        border: none;
+        border-top: 1px solid #000000;
+        height: 0;
+      }
+    </style>
+  </head>`;
+  }
+
+  private rendeUserDetailBody(user: User): string {
+    const html = `<div class="contenedor">
+    <div class="user">
+      <img src="${user.picture} />
+      <div class="details">
+        <div class="name">${user.fullName}</div>
+      </div>
+      <div class="details">
+        <div class="titulo_de_seccion">
+          <img class="icono" src="./img/contacto.png" />
+          <div class="title">Acerca</div>
+        </div>
+        <hr class="linea" />
+        <div class="seccion">Informacion de contacto</div>
+        <div class="title">Email:</div>
+        <div class="data">
+          <a
+            style="text-decoration: none"
+            ref="mailto:${user.email}">${user.email}</a>
+        </div>
+        <div class="title">Celular:</div>
+        <div class="data">${user.cell}</div>
+
+        <div class="titulo_de_seccion">
+          <img class="icono" src="./img/localizacion.png" />
+          <div class="title">Localizacion</div>
+        </div>
+        <hr class="linea" />
+
+        <div class="seccion">Residencia</div>
+        <div class="title">Calle:</div>
+        <div class="data">${user.location.street}</div>
+        <div class="title">Ciudad:</div>
+        <div class="data">${user.location.city}</div>
+        <div class="title">Estado:</div>
+        <div class="data">${user.location.state}</div>
+        <div class="title">Pais:</div>
+        <div class="data">${user.location.country}</div>
+        <div class="title">Codigo Postal:</div>
+        <div class="data">${user.location.postcode}</div>
+      </div>
+    </div>
+    <div class="mapContenedor">
+      <div class="tile">Donde vive Susie Douglas:</div>
+      <div id="mapid"></div>
+    </div>
+  </div>
+  <script>
+    const mapa = L.map("mapid").setView([${user.location.coordinates.latitude}, ${user.location.coordinates.longitude}], 13);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      tileSize: 512,
+      zoomOffset: -1,
+      subdomains: "abc",
+    }).addTo(mapa);
+  </script>
+`;
+   
+    return html;
+  }
+
+
+  public renderUsersDetails(users: Array<User>): Array<string> {
+
+    const allHtmlPages: Array<string> = users.map((user: User) => {
+      let htmlPage: string = "";
+      htmlPage = `<html>
+        ${this.renderUserDetailHead(`Detalles de contacto: ${user.fullName}`)}
+        <body>
+          ${this.rendeUserDetailBody(user)}
+        </body>
+      </html>`;
+
+      return htmlPage;
+    });
+    
+
+    return allHtmlPages;
   }
 }

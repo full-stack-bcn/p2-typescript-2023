@@ -13,12 +13,11 @@ export class UserServicesImp implements UserServices {
       gender,
       name,
       location,
-      login,
       email,
       picture,
       cell,
     } of results) {
-      users.push(new User(gender, name, location, login, email, picture, cell));
+      users.push(new User(gender, name, location, email, picture, cell));
     }
     return users;
   };

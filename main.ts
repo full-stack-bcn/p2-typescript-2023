@@ -14,6 +14,5 @@ const users = await userService.getUsers(USERS_TO_LOAD);
 const htmlUser = await renderServices.renderUsers(users);
 const htmlUserDetails = await renderServices.renderUsersDetails(users);
 
-
 await printServices.printPages(htmlUser, MAIN_HTML);
-await printServices.printPages(htmlUserDetails, MAIN_HTML);
+await printServices.printUsersDetails(users, htmlUserDetails);
