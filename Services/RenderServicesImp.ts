@@ -59,7 +59,6 @@ export class RenderServicesImp implements RenderServices {
         border-radius: 50%;
         margin-right: 0.7rem;
         margin-left: 0.7rem;
-        
       }
 
       .user .name {
@@ -77,6 +76,7 @@ export class RenderServicesImp implements RenderServices {
         border: none;
         border-radius: 0.3rem;
         cursor: pointer;
+        text-decoration: none;
       }
 
       .ver-mas:hover {
@@ -127,7 +127,7 @@ export class RenderServicesImp implements RenderServices {
           <div class="name">Celular:</div>
           <div class="email">${user.cell}</div>
         </div>
-        <button class="ver-mas">Ver más</button>
+        <a href = "${user.fullName}.html" class="ver-mas">Ver más</a>
       </div>`;
     }
     html += "</div>";
