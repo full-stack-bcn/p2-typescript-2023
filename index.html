@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .user-grid {
+        justify-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .user-grid > * {
+        width: 250px;
+        min-width: 210px;
+        max-width: 220px;
+      }
+
+      .user {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        border-bottom: 1px solid #ddd;
+        background-image: linear-gradient(to bottom, #08273a, #1d9dec);
+        max-width: 220px;
+        color: white;
+      }
+
+      .user .data {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+      }
+
+      .user img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin-right: 0.7rem;
+        margin-left: 0.7rem;
+      }
+
+      .user .name,
+      .ver-mas {
+        font-weight: bold;
+      }
+
+      .user .email {
+        font-family: monospace;
+      }
+
+      .ver-mas {
+        background-color: #08273a;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+      }
+
+      .ver-mas:hover {
+        background-color: navy;
+      }
+
+      ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      ul.pagination li {
+        display: inline;
+      }
+
+      ul.pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+
+      ul.pagination li a.active {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      ul.pagination li a:hover:not(.active) {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="user-grid">
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/11.jpg" />
+        <div class="data">
+          <div class="name">Email:</div>
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/32.jpg" />
+        <div class="data">
+          <div class="name">Email:</div>
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/1.jpg" />
+        <div class="data">
+          <div class="name">Email:</div>
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/3.jpg" />
+        <div class="data">
+          <div class="name">Email:</div>
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Milla Maijala</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/16.jpg" />
+        <div class="data">
+          <div class="name">Email:</div>
+          <div class="email">milla.maijala@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+      <div class="user">
+        <div class="data">
+          <div class="name">Josefine Kilian</div>
+        </div>
+        <img src="https://randomuser.me/api/portraits/med/women/37.jpg" />
+        <div class="data">
+          <div class="email">Email</div>
+          <div class="email">josefine.kilian@example.com</div>
+        </div>
+        <button class="ver-mas">Ver más</button>
+      </div>
+    </div>
+    <ul class="pagination">
+      <li><a href="#">«</a></li>
+      <li><a href="users.html">1</a></li>
+      <li><a class="active" href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">6</a></li>
+      <li><a href="#">7</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </body>
+</html>
