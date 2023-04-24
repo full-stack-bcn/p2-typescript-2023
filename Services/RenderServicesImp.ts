@@ -21,10 +21,15 @@ export class RenderServicesImp implements RenderServices {
         padding: 0;
       }
 
+      .titulo{
+        align-items: center;
+        margin-left: 0.7rem;
+      }
+      
       .user-grid {
         justify-items: center;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1rem;
       }
 
@@ -82,39 +87,15 @@ export class RenderServicesImp implements RenderServices {
       .ver-mas:hover {
         background-color: navy;
       }
-
-      ul.pagination {
-        display: inline-block;
-        padding: 0;
-        margin: 0;
-        font-family: sans-serif;
-      }
-
-      ul.pagination li {
-        display: inline;
-      }
-
-      ul.pagination li a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-      }
-
-      ul.pagination li a.active {
-        background-color: #4caf50;
-        color: white;
-      }
-
-      ul.pagination li a:hover:not(.active) {
-        background-color: #ddd;
-      }
     </style>
     </head>`;
   }
 
   private rendeBody(users: Array<User>): string {
-    let html = '<div class="user-grid">';
+    let html =
+      `<div class="titulo"> 
+      <h1>Lista de usuarios obteneidos de la API: randomuser.me</h1> 
+      </div><div class="user-grid">`;
     for (const user of users) {
       html += `<div class="user">
       <div class="data">
@@ -127,35 +108,11 @@ export class RenderServicesImp implements RenderServices {
           <div class="name">Celular:</div>
           <div class="email">${user.cell}</div>
         </div>
-        <a href = "${user.fullName}.html" class="ver-mas">Ver más</a>
+        <a href = "users_details/${user.fullName}.html" class="ver-mas">Ver más</a>
       </div>`;
     }
     html += "</div>";
     return html;
-  }
-
-  private addPagination(pages: number, current: number): string {
-    let hmlt = `<ul class="pagination">`;
-
-    if (current > 0) {
-      hmlt += `<li><a href="${MAIN_HTML}${current - 1}.html">«</a></li>`;
-    }
-
-    for (let i = 0; i < pages; i++) {
-      if (i == current) {
-        hmlt += `<li><a class="active" href="${MAIN_HTML}${i}.html">${i}</a></li>`;
-      } else {
-        hmlt += `<li><a href="${MAIN_HTML}${i}.html">${i}</a></li>`;
-      }
-    }
-
-    if (current < pages - 1) {
-      hmlt += `<li><a href="${MAIN_HTML}${current + 1}.html">»</a></li>`;
-    }
-
-    hmlt += "</ul>";
-
-    return hmlt;
   }
 
   public renderUsers(users: Array<User>): Array<string> {
@@ -168,10 +125,9 @@ export class RenderServicesImp implements RenderServices {
     for (let i: number = 0; i < pages; i++) {
       const sliceOfUsers = users.slice(from, until);
       htmlPage = `<html>
-        ${this.renderHead(`User List ${i}`)}
+        ${this.renderHead(`Lista de Usuarios`)}
         <body>
           ${this.rendeBody(sliceOfUsers)}
-          ${this.addPagination(pages, i)}
         </body>
       </html>`;
 
@@ -310,13 +266,13 @@ export class RenderServicesImp implements RenderServices {
   private rendeUserDetailBody(user: User): string {
     const html = `<div class="contenedor">
     <div class="user">
-      <img src="${user.picture} />
+      <img src="${user.picture.large}"/>
       <div class="details">
         <div class="name">${user.fullName}</div>
       </div>
       <div class="details">
         <div class="titulo_de_seccion">
-          <img class="icono" src="./img/contacto.png" />
+          <img class="icono" src="../img/contacto.png" />
           <div class="title">Acerca</div>
         </div>
         <hr class="linea" />
@@ -331,14 +287,14 @@ export class RenderServicesImp implements RenderServices {
         <div class="data">${user.cell}</div>
 
         <div class="titulo_de_seccion">
-          <img class="icono" src="./img/localizacion.png" />
+          <img class="icono" src="../img/localizacion.png" />
           <div class="title">Localizacion</div>
         </div>
         <hr class="linea" />
 
         <div class="seccion">Residencia</div>
         <div class="title">Calle:</div>
-        <div class="data">${user.location.street}</div>
+        <div class="data">${user.location.street.number} ${user.location.street.name}</div>
         <div class="title">Ciudad:</div>
         <div class="data">${user.location.city}</div>
         <div class="title">Estado:</div>
@@ -350,7 +306,7 @@ export class RenderServicesImp implements RenderServices {
       </div>
     </div>
     <div class="mapContenedor">
-      <div class="tile">Donde vive Susie Douglas:</div>
+      <div class="tile">Donde vive ${user.fullName}:</div>
       <div id="mapid"></div>
     </div>
   </div>
@@ -364,13 +320,11 @@ export class RenderServicesImp implements RenderServices {
     }).addTo(mapa);
   </script>
 `;
-   
+
     return html;
   }
 
-
   public renderUsersDetails(users: Array<User>): Array<string> {
-
     const allHtmlPages: Array<string> = users.map((user: User) => {
       let htmlPage: string = "";
       htmlPage = `<html>
@@ -382,7 +336,6 @@ export class RenderServicesImp implements RenderServices {
 
       return htmlPage;
     });
-    
 
     return allHtmlPages;
   }
